@@ -249,6 +249,7 @@
     <Content Include="img\img-01.jpg" />
     <Content Include="img\img-02.jpg" />
     <Content Include="Index.html" />
+    <Content Include="Post.html" />
     <Content Include="Scripts\ai.0.22.19-build00125.js" />
     <Content Include="Scripts\ai.0.22.19-build00125.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -432,6 +433,7 @@
     <Content Include="Scripts\tinymce\themes\inlite\theme.min.js" />
     <Content Include="Scripts\tinymce\themes\modern\theme.min.js" />
     <Content Include="Scripts\tinymce\tinymce.min.js" />
+    <Content Include="Scripts\typeahead.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
