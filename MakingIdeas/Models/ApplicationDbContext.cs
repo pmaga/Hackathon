@@ -7,7 +7,9 @@ namespace MakingIdeas.Models
 {
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
+        public DbSet<Project> Projects { get; set; }
         public DbSet<Idea> Ideas { get; set; }
+        public DbSet<Tag> Tags { get; set; }
 
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
@@ -25,7 +27,7 @@ namespace MakingIdeas.Models
             DateTime saveTime = DateTime.Now;
             foreach (var entry in this.ChangeTracker.Entries().Where(e => e.State == EntityState.Added))
             {
-                if (entry.Property("CreatedDate").CurrentValue == null)
+                if (entry.Property("CreatedDate").CurrentValue  is DateTime && (DateTime)entry.Property("CreatedDate").CurrentValue == DateTime.MinValue)
                     entry.Property("CreatedDate").CurrentValue = saveTime;
             }
             return base.SaveChanges();

@@ -55,7 +55,30 @@ namespace MakingIdeas.Controllers
             }
             catch (Exception ex)
             {
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex);
+            }
+        }
 
+        [System.Web.Mvc.HttpPost]
+        [Route("")]
+        public HttpResponseMessage Create([FromBody] Idea idea)
+        {
+
+            try
+            {
+                var result = _ideaRepository.Create(idea);
+
+                if (result)
+                {
+                    return Request.CreateResponse(HttpStatusCode.Created);
+                }
+                else
+                {
+                    return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "Could not create idea.");
+                }
+            }
+            catch (Exception ex)
+            {
                 return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex);
             }
         }
