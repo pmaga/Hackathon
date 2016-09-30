@@ -1,9 +1,6 @@
 ﻿
 $(document).ready(function () {
     //getfrontpageContent();
-
- 
-
 });
 
 function getfrontpageContent() {
@@ -27,11 +24,17 @@ function OnSuccess(response) {
 
 
 function PublishPost() {
+    var post = {
+        title: $("#heading").val(),
+        body: tinyMCE.get('postbody').getContent()
+    };
+
+
     $.ajax({
             method: "POST",
             url: "Post.html",
             data: {
-                data: tinyMCE.get('postbody').getContent()
+                data: JSON.stringify(post)
             }
         })
         .done(function(msg) {
