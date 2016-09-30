@@ -1,22 +1,194 @@
+/*
+ * global
+ */
+body {
+  color: #2b2835;
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 1.5;
+  font-family: 'Open Sans', sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+a {
+  color: #2b2835;
+  transition: all 300ms ease;
+}
+
+a:hover {
+  color: #2b2835;
+  text-decoration: none;
+}
+
+img {
+  width: 100%;
+  height: auto;
+}
+
+/*
+ * typography
+ */
+h1, h2, h3 {
+  font-family: 'Slabo 27px', sans-serif;
+}
+
+h1 {
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+h2 {
+  position: relative;
+  padding-left: 50px;
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #eee;
+}
+
+  h2::before {
+    width: 40px;
+    height: 4px;
+    content: ' ';
+    position: absolute;
+    top: 16px; left: 0;
+    background-color: #cc2e22;
+  }
+
+h3 {
+  position: relative;
+  margin-top: 0;
+  margin-bottom: 30px;
+}
+
+  h3::after {
+    width: 60px;
+    height: 2px;
+    content: ' ';
+    position: absolute;
+    left: 0; bottom: -10px;
+    background-color: #2b2835;
+  }
 
 
-/* ==========================================================================
-   Author's custom styles
-   ========================================================================== */
+/*
+ * jumbotron
+ */
+.jumbotron {
+  color: white;
+  text-align: center;
+  background: #2b2835;
+  background: -moz-linear-gradient(45deg,  #2b2835 0%, #403e4b 100%);
+  background: -webkit-linear-gradient(45deg,  #2b2835 0%,#403e4b 100%);
+  background: linear-gradient(45deg,  #2b2835 0%,#403e4b 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#2b2835', endColorstr='#403e4b',GradientType=1 );
+}
+
+  .jumbotron h1 {
+    margin-bottom: 30px;
+  }
+
+  .jumbotron p {
+    margin-bottom: 50px;
+  }
 
 
+/*
+ * button
+ */
+.btn {
+  color: white;
+  text-shadow: none;
+  position: relative;
+  top: 0;
+  border-radius: 0;
+  border: none;
+  box-shadow: 0 3px 0 #751b15;
+  background-color: #cc2e22;
+  background-image: none;
+  transition: all 300ms ease;
+}
 
+  .btn:hover {
+    top: 2px;
+    color: white;
+    box-shadow: 0 1px 0 #450f0b;
+    background-color: #751b15;
+  }
 
+.btn-lg {
+  padding: 20px 60px;
+  font-size: 1.250em;
+  text-transform: uppercase;
+  box-shadow: 0 6px 0 #751b15;
+}
 
+  .btn-lg:hover {
+    box-shadow: 0 3px 0 #450f0b;
+  }
 
+/*
+ * more post
+ */
+.more-post {
+  text-align: center;
+  margin-bottom: 40px;
+}
 
+/*
+ * news feed
+ */
+.news-feed {
+  margin-bottom: 40px;
+}
 
+.news-feed figure {
+  margin-bottom: 20px;
+}
 
+.news-feed small.right {
+  float: right;
+  display: block;
+}
 
+.news-feed a figure,
+.news-feed a h3 {
+  transition: all 300ms ease;
+}
 
+  .news-feed a:hover figure {
+    box-shadow: 0 0 20px #ccc;
+  }
 
+  .news-feed a:hover h3 {
+    color: #cc2e22;
+  }
 
+.news-feed a:hover p {
+  color: #2b2835;
+}
 
+.news-feed .btn {
+  margin-top: 30px;
+}
 
+  .news-feed .btn:hover {
+    color: white;
+  }
 
+.meta {
+  margin-bottom: 10px;
+}
 
+/*
+ * trending
+ */
+.trending {
+  background-color: #eee;
+}
+
+  .trending h2 {
+    border-color: #d1d1d1;
+  }
