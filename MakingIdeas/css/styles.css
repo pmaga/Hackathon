@@ -6,11 +6,7 @@ html {
   *overflow-x: hidden;
 }
 
-.container {
-  max-width: 750px;
-  margin: 0 auto;
-  text-align: center;
-}
+
 
 .tt-menu,
 .gist {
@@ -20,10 +16,6 @@ html {
 /* base styles */
 /* ----------- */
 
-html {
-  font: normal normal normal 18px/1.2 "Helvetica Neue", Roboto, "Segoe UI", Calibri, sans-serif;
-  color: #292f33;
-}
 
 
 a {
@@ -67,11 +59,6 @@ p + p {
   font-size: 32px;
 }
 
-.demo {
-  position: relative;
-  *z-index: 1;
-  margin: 50px 0;
-}
 
 .typeahead,
 .tt-query,
