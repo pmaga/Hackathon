@@ -50,14 +50,18 @@ function OnSuccess(response) {
 
 function PublishPost() {
     var post = {
-        title: $("#heading").val(),
-        body: tinyMCE.get('postbody').getContent()
+        Title: $("#heading").val(),
+        topic1: $("#topic1").val(),
+        topic2: $("#topic2").val(),
+        thumbnailurl: $("#thumbnailurl").val(),
+        projectref: $("#projectref").val(),
+        Body: tinyMCE.get('postbody').getContent()
     };
 
 
     $.ajax({
             method: "POST",
-            url: "Post.html",
+            url: "/api/ideas",
             data: {
                 data: JSON.stringify(post)
             }

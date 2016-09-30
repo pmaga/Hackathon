@@ -28,6 +28,27 @@ img {
   height: auto;
 }
 
+.clearfix:after {
+  visibility: hidden;
+  display: block;
+  font-size: 0;
+  content: " ";
+  clear: both;
+  height: 0;
+}
+
+.clearfix {
+  display: inline-block;
+}
+
+* html .clearfix {
+  height: 1%;
+}
+
+.clearfix {
+  display: block;
+}
+
 /*
  * typography
  */
@@ -72,6 +93,21 @@ h3 {
     background-color: #2b2835;
   }
 
+/*
+ * header
+ */
+.navbar-inverse {
+  border: none;
+  background-color: #eee;
+  background-image: none;
+}
+
+  .navbar-inverse .navbar-brand {
+    color: #2b2835;
+    font-family: 'Slabo 27px', sans-serif;
+    font-weight: bold;
+    text-shadow: none;
+  }
 
 /*
  * jumbotron
@@ -89,6 +125,15 @@ h3 {
   .jumbotron h1 {
     margin-bottom: 30px;
   }
+
+  .jumbotron h2 {
+    padding-left: 0;
+    border: none;
+  }
+
+    .jumbotron h2::before {
+      display: none;
+    }
 
   .jumbotron p {
     margin-bottom: 50px;
@@ -149,6 +194,7 @@ h3 {
 }
 
 .news-feed small.right {
+  margin-top: 20px;
   float: right;
   display: block;
 }
@@ -186,9 +232,30 @@ h3 {
  * trending
  */
 .trending {
+  padding-top: 20px;
+  padding-bottom: 20px;
   background-color: #eee;
 }
 
   .trending h2 {
     border-color: #d1d1d1;
+  }
+
+  .trending a:hover figure {
+    box-shadow: 0 0 20px #999;
+  }
+
+/*
+ * footer
+ */
+.main-footer {
+  margin-top: 20px;
+  color: #2b2835;
+  text-align: center;
+  background-color: #eee;
+}
+
+  .main-footer p {
+    padding: 20px 0;
+    margin: 0;
   }
