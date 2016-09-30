@@ -21,16 +21,16 @@ namespace MakingIdeas.Controllers
         }
 
         [System.Web.Mvc.HttpGet]
-        [Route("getNewest/{amount?}")]
-        public List<IdeaFeedView> GetNewest(int amount)
+        [Route("getNewest/{amount:int?}")]
+        public List<IdeaFeedView> GetNewest(int amount = 0)
         {
             return _ideaRepository.GetNewestIdeas(amount)
                     .Select(n => new IdeaFeedView(n.Id, n.Title, n.Body, n.CreatedDate, n.Likes)).ToList();
         }
 
         [System.Web.Mvc.HttpGet]
-        [Route("getTrendings/{amount?}")]
-        public List<IdeaFeedView> GetTrendings(int amount)
+        [Route("getTrendings/{amount:int?}")]
+        public List<IdeaFeedView> GetTrendings(int amount = 0)
         {
             return _ideaRepository.GetTrandingIdeas(amount)
                     .Select(n => new IdeaFeedView(n.Id, n.Title, n.Body, n.CreatedDate, n.Likes)).ToList();
