@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using MakingIdeas.Models;
 
@@ -33,6 +34,25 @@ namespace MakingIdeas.Repositories
                 }
                 return ideas.ToList();
             }
+        }
+
+        public bool AddLike(int ideaId)
+        {
+            var result = false;
+            using (var ctx = new ApplicationDbContext())
+            {
+                var idea = ctx.Ideas.FirstOrDefault(n => n.Id == ideaId);
+
+                if (idea != null)
+                {
+                    idea.Likes++;
+                    ctx.Entry(idea).State = EntityState.Modified;
+                    ctx.SaveChanges();
+                    result = true;
+                }
+            }
+
+            return result;
         }
     }
 }

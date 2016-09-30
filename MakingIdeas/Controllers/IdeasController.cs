@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Net.Http;
 using System.Web.Http;
 using MakingIdeas.Dtos;
 using MakingIdeas.Models;
@@ -32,6 +34,30 @@ namespace MakingIdeas.Controllers
         {
             return _ideaRepository.GetTrandingIdeas(amount)
                     .Select(n => new IdeaFeedView(n.Id, n.Title, n.Body, n.CreatedDate, n.Likes)).ToList();
+        }
+
+        [System.Web.Mvc.HttpPut]
+        [Route("addLike/{ideaId}")]
+        public HttpResponseMessage AddLike(int ideaId)
+        {
+            try
+            {
+                var result = _ideaRepository.AddLike(ideaId);
+
+                if (result)
+                {
+                    return Request.CreateResponse(HttpStatusCode.Created);
+                }
+                else
+                {
+                    return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "Could not update idea.");
+                }
+            }
+            catch (Exception ex)
+            {
+
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex);
+            }
         }
     }
 }
