@@ -47,9 +47,21 @@ namespace MakingIdeas.Repositories
                 {
                     idea.Likes++;
                     ctx.Entry(idea).State = EntityState.Modified;
-                    ctx.SaveChanges();
-                    result = true;
+                    result = ctx.SaveChanges() > 0;
                 }
+            }
+
+            return result;
+        }
+
+        public bool Create(Idea idea)
+        {
+            bool result;
+
+            using (var ctx = new ApplicationDbContext())
+            {
+                ctx.Ideas.Add(idea);
+                result = ctx.SaveChanges() > 0;
             }
 
             return result;
