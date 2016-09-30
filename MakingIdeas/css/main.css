@@ -97,7 +97,7 @@ h3 {
  * header
  */
 .navbar-inverse {
-  border: none;
+  border-color: #2b2835;
   background-color: #eee;
   background-image: none;
 }
@@ -199,6 +199,10 @@ h3 {
   display: block;
 }
 
+.news-feed a {
+  position: relative;
+}
+
 .news-feed a figure,
 .news-feed a h3 {
   transition: all 300ms ease;
@@ -227,6 +231,22 @@ h3 {
 .meta {
   margin-bottom: 10px;
 }
+
+.rating {
+  padding: 20px;
+  color: white;
+  text-align: center;
+  position: absolute;
+  top: 0; left: 0;
+  z-index: 1;
+  background-color: #2b2835;
+}
+
+  .rating svg {
+    width: 24px;
+    height: 29px;
+    fill: white;
+  }
 
 /*
  * trending
