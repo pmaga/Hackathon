@@ -104,10 +104,29 @@ h3 {
 
   .navbar-inverse .navbar-brand {
     color: #2b2835;
+    font-size: .875em;
     font-family: 'Slabo 27px', sans-serif;
     font-weight: bold;
     text-shadow: none;
   }
+
+  .navbar-inverse .navbar-brand:hover {
+    color: #cc2e22;
+  }
+
+  .navbar-inverse .navbar-collapse, .navbar-inverse .navbar-form {
+    border: none;
+  }
+
+  @media (min-width: 768px) {
+    .navbar-inverse .navbar-brand {
+      font-size: 1.125em;
+    }
+  }
+
+.navbar-toggle {
+  background-color: #2b2835;
+}
 
 /*
  * jumbotron
@@ -164,8 +183,8 @@ h3 {
   }
 
 .btn-lg {
-  padding: 20px 60px;
-  font-size: 1.250em;
+  padding: 20px 45px;
+  font-size: 1em;
   text-transform: uppercase;
   box-shadow: 0 6px 0 #751b15;
 }
@@ -173,6 +192,13 @@ h3 {
   .btn-lg:hover {
     box-shadow: 0 3px 0 #450f0b;
   }
+
+@media (min-width: 768px) {
+  .btn-lg {
+    padding: 20px 60px;
+    font-size: 1.250em;
+  }
+}
 
 /*
  * more post
@@ -239,7 +265,7 @@ h3 {
   position: absolute;
   top: 0; left: 0;
   z-index: 1;
-  background-color: #2b2835;
+  background-color: #cc2e22;
 }
 
   .rating svg {
