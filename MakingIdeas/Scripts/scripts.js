@@ -49,12 +49,15 @@ function OnSuccess(response) {
 
 
 function PublishPost() {
+
+    var tags = [];
+    tags.push($("#topic1").val());
+    tags.push($("#topic2").val());
+
     var post = {
         Title: $("#heading").val(),
-        topic1: $("#topic1").val(),
-        topic2: $("#topic2").val(),
         thumbnailurl: $("#thumbnailurl").val(),
-        projectref: $("#projectref").val(),
+        Project: $("#projectref").val(),
         Body: tinyMCE.get('postbody').getContent()
     };
 
@@ -62,12 +65,12 @@ function PublishPost() {
     $.ajax({
             method: "POST",
             url: "/api/ideas",
-            data: {
-                data: JSON.stringify(post)
-            }
+            dataType: "application/json",
+            data: { Title: post.Title, body: post.Body, Tags: tags, Project: post.Project, Thumbnailurl: post.Thumbnailurl }
+    })
+        .error(function (err) {
         })
         .done(function(msg) {
-            alert("Data Saved: " + msg);
         });
 }
 
