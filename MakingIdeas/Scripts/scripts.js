@@ -28,12 +28,13 @@ function OnSuccess(response) {
     $.each(items, function (index, val) {
         var title = val.Title;
         var body = val.Body;
-        var topics = "design"; val.Topics;
+        var thumbnail = val.ThumbnailUrl;
+        var topics = val.Tags;
 
         fragment += "<div class='col-sm-12 col-md-4 clearfix'><div class='meta'><small>Topic: " + topics + "</small></div>" +
             "<a href='' title=''>" +
             "<figure>" +
-            "<img src='img/img-01.jpg' />" +
+            "<img src='" + thumbnail  + "' />" +
             "</figure>" +
             "<h3>" + title + "</h3>" +
             "<p>" + body + "</p>" +
