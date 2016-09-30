@@ -23,7 +23,15 @@ namespace MakingIdeas.Controllers
         public List<IdeaFeedView> GetNewest(int amount)
         {
             return _ideaRepository.GetNewestIdeas(amount)
-                    .Select(n => new IdeaFeedView(n.Id, n.Title, n.Body, n.CreatedDate)).ToList();
+                    .Select(n => new IdeaFeedView(n.Id, n.Title, n.Body, n.CreatedDate, n.Likes)).ToList();
+        }
+
+        [System.Web.Mvc.HttpGet]
+        [Route("getTrendings/{amount}")]
+        public List<IdeaFeedView> GetTrendings(int amount)
+        {
+            return _ideaRepository.GetTrandingIdeas(amount)
+                    .Select(n => new IdeaFeedView(n.Id, n.Title, n.Body, n.CreatedDate, n.Likes)).ToList();
         }
     }
 }

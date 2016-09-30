@@ -6,5 +6,6 @@
 
         public string Body { get; set; }
 
+        public int Likes { get; set; }
     }
 }
