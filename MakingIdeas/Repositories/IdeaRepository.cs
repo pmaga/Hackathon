@@ -1,7 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using MakingIdeas.Infrastructure;
 using MakingIdeas.Models;
 
 namespace MakingIdeas.Repositories
@@ -62,8 +62,14 @@ namespace MakingIdeas.Repositories
             {
                 ctx.Ideas.Add(idea);
                 result = ctx.SaveChanges() > 0;
-            }
 
+                var urlWithAccessToken = "https://hooks.slack.com/services/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";
+                var client = new SlackClient(urlWithAccessToken);
+
+                client.PostMessage(username: "incoming-webhook",
+                    text: "A test message from Making Ideas",
+                    channel: "#test-your-stuff-here");
+            }
             return result;
         }
 
