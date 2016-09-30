@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Web;
 using System.Web.Http;
-using MakingIdeas.Models;
 
 namespace MakingIdeas.Controllers
 {
@@ -15,20 +12,6 @@ namespace MakingIdeas.Controllers
         public string GetWelcomeMessage()
         {
             return "Welcome from Web API";
-        }
-    }
-
-    [RoutePrefix("api/Ideas")]
-    public class IdeasController : ApiController
-    {
-        [System.Web.Mvc.HttpGet]
-        [Route("")]
-        public List<Idea> Get()
-        {
-            using (var ctx = new ApplicationDbContext())
-            {
-                return ctx.Ideas.ToList();
-            }
         }
     }
 }
