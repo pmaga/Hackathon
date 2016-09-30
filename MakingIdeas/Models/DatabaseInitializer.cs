@@ -23,6 +23,8 @@ namespace MakingIdeas.Models
                 new Project { Name = "Project 3" }
             };
 
+            var tags = 
+
             context.Projects.AddRange(projects);
 
             context.Ideas.AddRange(ideas);
