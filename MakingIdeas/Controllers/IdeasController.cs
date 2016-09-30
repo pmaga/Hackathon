@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
 using MakingIdeas.Dtos;
@@ -22,7 +23,7 @@ namespace MakingIdeas.Controllers
         public List<IdeaFeedView> GetNewest(int amount)
         {
             return _ideaRepository.GetNewestIdeas(amount)
-                .Select(n => new IdeaFeedView(n.Id, n.Title, n.Body, n.CreatedDate)).ToList();
+                    .Select(n => new IdeaFeedView(n.Id, n.Title, n.Body, n.CreatedDate)).ToList();
         }
     }
 }
