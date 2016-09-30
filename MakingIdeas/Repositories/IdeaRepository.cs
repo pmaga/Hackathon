@@ -16,11 +16,9 @@ namespace MakingIdeas.Repositories
 
                 if (amount > 0)
                 {
-                    return
-                        ideas.Take(amount)
-                            .Select( n => new IdeaFeedView(n.Id, n.Title, n.Body, n.CreatedDate, n.Likes, n.ThumbnailUrl, n.Tags.Select(t => t.Name).ToList()));
+                    return ideas.Take(amount).Select( ConvertToIdeaFeedView);
                 }
-                return ideas.Select(n => new IdeaFeedView(n.Id, n.Title, n.Body, n.CreatedDate, n.Likes, n.ThumbnailUrl, n.Tags.Select(t => t.Name).ToList()));
+                return ideas.Select(ConvertToIdeaFeedView);
             }
         }
 
@@ -32,9 +30,9 @@ namespace MakingIdeas.Repositories
 
                 if (amount > 0)
                 {
-                    return ideas.Select(n => new IdeaFeedView(n.Id, n.Title, n.Body, n.CreatedDate, n.Likes, n.ThumbnailUrl, n.Tags.Select(t => t.Name).ToList())).Take(amount).ToList();
+                    return ideas.Take(amount).Select(ConvertToIdeaFeedView).ToList();
                 }
-                return ideas.Select(n => new IdeaFeedView(n.Id, n.Title, n.Body, n.CreatedDate, n.Likes, n.ThumbnailUrl, n.Tags.Select(t => t.Name).ToList())).ToList();
+                return ideas.Select(ConvertToIdeaFeedView).ToList();
             }
         }
 
@@ -82,5 +80,9 @@ namespace MakingIdeas.Repositories
                 return ctx.Ideas.FirstOrDefault(n => n.Id == id);
             }
         }
+
+        private IdeaFeedView ConvertToIdeaFeedView(Idea n)
+            => new IdeaFeedView(n.Id, n.Title, n.Body, n.CreatedDate, n.Likes, n.ThumbnailUrl,
+                n.Tags.Select(t => t.Name).ToList());
     }
 }
