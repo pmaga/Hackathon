@@ -1,14 +1,11 @@
 ﻿
 $(document).ready(function () {
-    //getfrontpageContent();
-
- 
-
+    getfrontpageContent();
 });
 
 function getfrontpageContent() {
     $.ajax({
-        url: "https://jsonplaceholder.typicode.com/posts",
+        url: "/api/ideas",
         context: document.body,
         success: OnSuccess
     });
@@ -18,8 +15,9 @@ function OnSuccess(response) {
     var items = response;
     var fragment = "<ul>";
     $.each(items, function (index, val) {
-        var name = val.title;
-        fragment += "<li> " + name + "</li>";
+        var title = val.Title;
+        var body = val.Body;
+        fragment += "<li> " + title + "<br><br>" + body + "<br><hr>" + "</li>";
     });
     fragment += "</ul>";
     $("#contentholder").append(fragment);
@@ -27,11 +25,17 @@ function OnSuccess(response) {
 
 
 function PublishPost() {
+    var post = {
+        title: $("#heading").val(),
+        body: tinyMCE.get('postbody').getContent()
+    };
+
+
     $.ajax({
             method: "POST",
             url: "Post.html",
             data: {
-                data: tinyMCE.get('postbody').getContent()
+                data: JSON.stringify(post)
             }
         })
         .done(function(msg) {
