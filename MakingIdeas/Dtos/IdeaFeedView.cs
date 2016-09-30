@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 
 namespace MakingIdeas.Dtos
 {
@@ -10,8 +12,9 @@ namespace MakingIdeas.Dtos
         public DateTime CreatedDate { get; set; }
         public int Likes { get; set; }
         public string ThumbnailUrl { get; set; }
+        public IList<string> Tags { get; set; }
 
-        public IdeaFeedView(int id, string title, string body, DateTime createdDate, int likes, string thumbnailUrl)
+        public IdeaFeedView(int id, string title, string body, DateTime createdDate, int likes, string thumbnailUrl, IList<string> tags)
         {
             Id = id;
             Title = title;
@@ -19,6 +22,7 @@ namespace MakingIdeas.Dtos
             CreatedDate = createdDate;
             Likes = likes;
             ThumbnailUrl = thumbnailUrl;
+            Tags = tags;
         }
     }
 }

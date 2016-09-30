@@ -24,16 +24,14 @@ namespace MakingIdeas.Controllers
         [Route("getNewest/{amount:int?}")]
         public List<IdeaFeedView> GetNewest(int amount = 0)
         {
-            return _ideaRepository.GetNewestIdeas(amount)
-                    .Select(n => new IdeaFeedView(n.Id, n.Title, n.Body, n.CreatedDate, n.Likes, n.ThumbnailUrl)).ToList();
+            return _ideaRepository.GetNewestIdeas(amount).ToList();
         }
 
         [System.Web.Mvc.HttpGet]
         [Route("getTrendings/{amount:int?}")]
         public List<IdeaFeedView> GetTrendings(int amount = 0)
         {
-            return _ideaRepository.GetTrandingIdeas(amount)
-                    .Select(n => new IdeaFeedView(n.Id, n.Title, n.Body, n.CreatedDate, n.Likes, n.ThumbnailUrl)).ToList();
+            return _ideaRepository.GetTrandingIdeas(amount).ToList();
         }
 
         [System.Web.Mvc.HttpPut]
@@ -61,19 +59,36 @@ namespace MakingIdeas.Controllers
 
         [System.Web.Mvc.HttpGet]
         [Route("{id}")]
-        public Idea Get(int id)
+        public IdeaDto Get(int id)
         {
-            return _ideaRepository.Get(id);
+            var idea = _ideaRepository.Get(id);
+
+            return new IdeaDto
+            {
+                Title = idea.Title,
+                Body = idea.Body,
+                Tags = idea.Tags.Select(n => n.Name).ToList(),
+                ThumbnailUrl = idea.ThumbnailUrl,
+                Likes = idea.Likes,
+                Project = idea.Project
+            };
         }
 
         [System.Web.Mvc.HttpPost]
         [Route("")]
-        public HttpResponseMessage Create([FromBody] Idea idea)
+        public HttpResponseMessage Create([FromBody] IdeaDto idea)
         {
 
             try
             {
-                var result = _ideaRepository.Create(idea);
+                var result = _ideaRepository.Create(new Idea
+                {
+                    Title = idea.Title,
+                    Body = idea.Body,
+                    Project = idea.Project,
+                    ThumbnailUrl = idea.ThumbnailUrl,
+                    Tags = idea.Tags.Select(n => new Tag { Name = n }).ToList()
+                });
 
                 if (result)
                 {

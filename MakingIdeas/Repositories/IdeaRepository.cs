@@ -2,37 +2,40 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using MakingIdeas.Dtos;
 using MakingIdeas.Models;
 
 namespace MakingIdeas.Repositories
 {
     public class IdeaRepository
     {
-        public IEnumerable<Idea> GetNewestIdeas(int amount)
+        public IEnumerable<IdeaFeedView> GetNewestIdeas(int amount)
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var ideas = ctx.Ideas.OrderByDescending(n => n.CreatedDate);
+                var ideas = ctx.Ideas.Include("Tags").OrderByDescending(n => n.CreatedDate).ToList();
 
                 if (amount > 0)
                 {
-                    return ideas.Take(amount).ToList();
+                    return
+                        ideas.Take(amount)
+                            .Select( n => new IdeaFeedView(n.Id, n.Title, n.Body, n.CreatedDate, n.Likes, n.ThumbnailUrl, n.Tags.Select(t => t.Name).ToList()));
                 }
-                return ideas.ToList();
+                return ideas.Select(n => new IdeaFeedView(n.Id, n.Title, n.Body, n.CreatedDate, n.Likes, n.ThumbnailUrl, n.Tags.Select(t => t.Name).ToList()));
             }
         }
 
-        public IEnumerable<Idea> GetTrandingIdeas(int amount)
+        public IEnumerable<IdeaFeedView> GetTrandingIdeas(int amount)
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var ideas = ctx.Ideas.OrderByDescending(n => n.Likes);
+                var ideas = ctx.Ideas.Include("Tags").OrderByDescending(n => n.Likes).ToList();
 
                 if (amount > 0)
                 {
-                    return ideas.Take(amount).ToList();
+                    return ideas.Select(n => new IdeaFeedView(n.Id, n.Title, n.Body, n.CreatedDate, n.Likes, n.ThumbnailUrl, n.Tags.Select(t => t.Name).ToList())).Take(amount).ToList();
                 }
-                return ideas.ToList();
+                return ideas.Select(n => new IdeaFeedView(n.Id, n.Title, n.Body, n.CreatedDate, n.Likes, n.ThumbnailUrl, n.Tags.Select(t => t.Name).ToList())).ToList();
             }
         }
 

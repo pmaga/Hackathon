@@ -1,9 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
-namespace MakingIdeas.Models
+namespace MakingIdeas.Dtos
 {
-    public class Idea : Entity
+    public class IdeaDto
     {
         public string Title { get; set; }
         public string Body { get; set; }
@@ -11,11 +10,11 @@ namespace MakingIdeas.Models
 
         public string Project { get; set; }
         public string ThumbnailUrl { get; set; }
-        public virtual ICollection<Tag> Tags { get; set; }
+        public IList<string> Tags { get; set; }
 
-        public Idea()
+        public IdeaDto()
         {
-            Tags = new List<Tag>();
+            Tags = new List<string>();
         }
     }
 }
