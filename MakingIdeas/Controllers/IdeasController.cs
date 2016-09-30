@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
+using MakingIdeas.Dtos;
 using MakingIdeas.Models;
 using MakingIdeas.Repositories;
 
@@ -18,9 +19,10 @@ namespace MakingIdeas.Controllers
 
         [System.Web.Mvc.HttpGet]
         [Route("getNewest/{amount}")]
-        public List<Idea> GetNewest(int amount)
+        public List<IdeaFeedView> GetNewest(int amount)
         {
-            return _ideaRepository.GetNewestIdeas(amount).ToList();
+            return _ideaRepository.GetNewestIdeas(amount)
+                .Select(n => new IdeaFeedView(n.Id, n.Title, n.Body, n.CreatedDate)).ToList();
         }
     }
 }
