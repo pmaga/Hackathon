@@ -10,6 +10,7 @@ namespace MakingIdeas.Models
         public int Likes { get; set; }
 
         public string Project { get; set; }
+        public string ThumbnailUrl { get; set; }
         public IList<string> Tags { get; set; }
 
         public Idea()

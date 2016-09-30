@@ -25,7 +25,7 @@ namespace MakingIdeas.Controllers
         public List<IdeaFeedView> GetNewest(int amount = 0)
         {
             return _ideaRepository.GetNewestIdeas(amount)
-                    .Select(n => new IdeaFeedView(n.Id, n.Title, n.Body, n.CreatedDate, n.Likes)).ToList();
+                    .Select(n => new IdeaFeedView(n.Id, n.Title, n.Body, n.CreatedDate, n.Likes, n.ThumbnailUrl)).ToList();
         }
 
         [System.Web.Mvc.HttpGet]
@@ -33,7 +33,7 @@ namespace MakingIdeas.Controllers
         public List<IdeaFeedView> GetTrendings(int amount = 0)
         {
             return _ideaRepository.GetTrandingIdeas(amount)
-                    .Select(n => new IdeaFeedView(n.Id, n.Title, n.Body, n.CreatedDate, n.Likes)).ToList();
+                    .Select(n => new IdeaFeedView(n.Id, n.Title, n.Body, n.CreatedDate, n.Likes, n.ThumbnailUrl)).ToList();
         }
 
         [System.Web.Mvc.HttpPut]
