@@ -68,8 +68,10 @@ namespace MakingIdeas.Repositories
                 var urlWithAccessToken = "https://hooks.slack.com/services/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";
                 var client = new SlackClient(urlWithAccessToken);
 
+                var msg = "Here We Share the latest topic: " + idea.Title;
+
                 client.PostMessage(username: "incoming-webhook",
-                    text: "A test message from Making Ideas",
+                    text: msg,
                     channel: "#test-your-stuff-here");
             }
             return result;
