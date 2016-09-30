@@ -16,7 +16,7 @@ $(document).ready(function () {
 
 function getfrontpageContent() {
     $.ajax({
-        url: "/api/ideas",
+        url: "/api/ideas/getNewest/3",
         context: document.body,
         success: OnSuccess
     });
@@ -24,13 +24,26 @@ function getfrontpageContent() {
 
 function OnSuccess(response) {
     var items = response;
-    var fragment = "<ul>";
+    var fragment = "";
     $.each(items, function (index, val) {
         var title = val.Title;
         var body = val.Body;
-        fragment += "<li> " + title + "<br><br>" + body + "<br><hr>" + "</li>";
+        var topics = "design"; val.Topics;
+
+        fragment += "<div class='col-sm-12 col-md-4'><div class='meta'><small>Topic: " + topics + "</small></div>" +
+            "<a href='' title=''>" +
+            "<figure>" +
+            "<img src='img/img-01.jpg' />" +
+            "</figure>" +
+            "<h3>" + title + "</h3>" +
+            "<p>" + body + "</p>" +
+            "<p>" +
+            "<a href=''><small class='right'>Read more &rarr;</small></a>" +
+            "</p>" +
+            "</a>" +
+            "</div>";
+
     });
-    fragment += "</ul>";
     $("#contentholder").append(fragment);
 }
 
