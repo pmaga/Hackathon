@@ -49,12 +49,14 @@ function OnSuccess(response) {
 
 
 function PublishPost() {
+
+    var tags = $("#topic1").val();
+
+
     var post = {
         Title: $("#heading").val(),
-        topic1: $("#topic1").val(),
-        topic2: $("#topic2").val(),
-        thumbnailurl: $("#thumbnailurl").val(),
-        projectref: $("#projectref").val(),
+        Thumbnailurl: $("#thumbnailurl").val(),
+        Project: $("#projectref").val(),
         Body: tinyMCE.get('postbody').getContent()
     };
 
@@ -62,13 +64,19 @@ function PublishPost() {
     $.ajax({
             method: "POST",
             url: "/api/ideas",
-            data: {
-                data: JSON.stringify(post)
-            }
+            dataType: "application/json",
+            data: { Title: post.Title, body: post.Body, Tags: tags, Project: post.Project, Thumbnailurl: post.Thumbnailurl }
+    })
+        .error(function (err) {
+            window.location = "index.html";
         })
-        .done(function(msg) {
-            alert("Data Saved: " + msg);
+        .done(function (msg) {
+
+            window.location = "index.html";
         });
+
+
+        
 }
 
 var substringMatcher = function (strs) {
@@ -93,6 +101,6 @@ var substringMatcher = function (strs) {
     };
 };
 
-var topics = ['Design', 'Backend', 'Frontend', 'UX'];
+var topics = ['Design', 'Backend', 'Frontend', 'UX', 'Inspiration','Tech','IxD','Project Management','Project Reference','DevOps','Lean','Agile','Waterfall','SCRUM'];
 
 
