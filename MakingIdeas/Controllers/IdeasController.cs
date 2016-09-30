@@ -59,6 +59,13 @@ namespace MakingIdeas.Controllers
             }
         }
 
+        [System.Web.Mvc.HttpGet]
+        [Route("{id}")]
+        public Idea Get(int id)
+        {
+            return _ideaRepository.Get(id);
+        }
+
         [System.Web.Mvc.HttpPost]
         [Route("")]
         public HttpResponseMessage Create([FromBody] Idea idea)

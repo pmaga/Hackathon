@@ -66,5 +66,13 @@ namespace MakingIdeas.Repositories
 
             return result;
         }
+
+        public Idea Get(int id)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                return ctx.Ideas.FirstOrDefault(n => n.Id == id);
+            }
+        }
     }
 }
