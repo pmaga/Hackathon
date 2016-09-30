@@ -11,7 +11,13 @@ namespace MakingIdeas.Repositories
         {
             using (var ctx = new ApplicationDbContext())
             {
-                return ctx.Ideas.OrderByDescending(n => n.CreatedDate).Take(amount).ToList();
+                var ideas = ctx.Ideas.OrderByDescending(n => n.CreatedDate);
+
+                if (amount > 0)
+                {
+                    return ideas.Take(amount).ToList();
+                }
+                return ideas.ToList();
             }
         }
 
@@ -19,7 +25,13 @@ namespace MakingIdeas.Repositories
         {
             using (var ctx = new ApplicationDbContext())
             {
-                return ctx.Ideas.OrderByDescending(n => n.Likes).Take(amount).ToList();
+                var ideas = ctx.Ideas.OrderByDescending(n => n.Likes);
+
+                if (amount > 0)
+                {
+                    return ideas.Take(amount).ToList();
+                }
+                return ideas.ToList();
             }
         }
     }

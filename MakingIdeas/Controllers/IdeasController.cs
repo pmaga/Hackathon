@@ -19,7 +19,7 @@ namespace MakingIdeas.Controllers
         }
 
         [System.Web.Mvc.HttpGet]
-        [Route("getNewest/{amount}")]
+        [Route("getNewest/{amount?}")]
         public List<IdeaFeedView> GetNewest(int amount)
         {
             return _ideaRepository.GetNewestIdeas(amount)
@@ -27,7 +27,7 @@ namespace MakingIdeas.Controllers
         }
 
         [System.Web.Mvc.HttpGet]
-        [Route("getTrendings/{amount}")]
+        [Route("getTrendings/{amount?}")]
         public List<IdeaFeedView> GetTrendings(int amount)
         {
             return _ideaRepository.GetTrandingIdeas(amount)
