@@ -2,7 +2,7 @@
 $(document).ready(function () {
     getfrontpageContent();
 
-    $('#the-basics .typeahead').typeahead({
+    $('#topics .typeahead').typeahead({
         hint: true,
         highlight: true,
         minLength: 1
@@ -30,7 +30,7 @@ function OnSuccess(response) {
         var body = val.Body;
         var topics = "design"; val.Topics;
 
-        fragment += "<div class='col-sm-12 col-md-4'><div class='meta'><small>Topic: " + topics + "</small></div>" +
+        fragment += "<div class='col-sm-12 col-md-4 clearfix'><div class='meta'><small>Topic: " + topics + "</small></div>" +
             "<a href='' title=''>" +
             "<figure>" +
             "<img src='img/img-01.jpg' />" +
