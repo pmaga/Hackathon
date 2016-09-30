@@ -1,0 +1,38 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="utf-8" />
+    <script src="Scripts/jquery-1.10.2.min.js"></script>
+    <script src="Scripts/tinymce/tinymce.min.js"></script>
+    <script src="Scripts/scripts.js"></script>
+
+    <script>
+        tinymce.init({
+            selector: 'textarea',
+            height: 500,
+            plugins: [
+              'advlist autolink lists link image charmap print preview anchor',
+              'searchreplace visualblocks code fullscreen',
+              'insertdatetime media table contextmenu paste code'
+            ],
+            toolbar: 'insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image'
+        });
+    </script>
+
+</head>
+<body>
+
+
+
+<input id="heading" placeholder="title" type="text"/>
+
+
+<br/><br />
+<textarea id="postbody">Add post!</textarea>
+
+<br /><br />
+<button id="btnpublish" onclick="PublishPost()">Publish!</button>
+
+</body>
+</html>
